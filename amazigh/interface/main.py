@@ -28,7 +28,7 @@ def trim(image):
         image=image.crop(box)
     return image
 
-with st.form("input_form"):
+with st.form("input_form",clear_on_submit=True):
     st.write("<h3>Upload your image for the magic ✨</h3>", unsafe_allow_html=True)
     input_img = st.file_uploader('character image',type=['png', 'jpg','jpeg'])
     if st.form_submit_button("Predict"):
