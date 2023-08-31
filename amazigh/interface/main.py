@@ -15,7 +15,7 @@ def predict(model,image):
             'yagh','yagw','yah','yahh','yaj','yak','yakw','yal',
             'yam','yan','yaq','yar','yarr','yas','yass','yat',
             'yatt','yaw','yax','yay','yaz','yazz','yey','yi','yu']
-    proba=round(np.max(yhat),0)*100
+    proba=round(np.max(yhat),2)*100
     result=labels[np.argmax(yhat)]
     return result,proba
 
