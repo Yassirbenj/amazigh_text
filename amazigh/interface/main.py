@@ -2,6 +2,7 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 from PIL import Image,ImageChops
+import streamlit_drawable_canvas
 from streamlit_drawable_canvas import st_canvas
 
 
