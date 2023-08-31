@@ -25,7 +25,8 @@ with st.form("input_form"):
     if st.form_submit_button("Predict"):
         if input_img:
             image = Image.open(input_img)
-            img_array = np.array(image)
+            new_image=image.resize((64,64))
+            img_array = np.array(new_image)
             loaded_model = load_model()
             prediction = predict(loaded_model,img_array)
             st.write(f"<h3>The prediction is: {prediction} </h3>", unsafe_allow_html=True)
