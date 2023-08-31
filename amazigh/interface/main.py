@@ -19,12 +19,13 @@ def predict(model,image):
     return result
 
 def trim(image):
-    bg = Image.new(image.mode, image.getpixel((0, 0)),size=(64,64))
+    bg = Image.new(image.mode, image.getpixel((0, 0)),image.size)
     diff = ImageChops.difference(image, bg)
     diff = ImageChops.add(diff, diff, 2.0, -100)
     box = diff.getbbox()
     if box:
-        image.crop(box).save("trim_pil.png")
+        image=image.crop(box)
+    return image
 
 with st.form("input_form"):
     st.write("<h3>Upload your image for the magic ✨</h3>", unsafe_allow_html=True)
@@ -32,8 +33,8 @@ with st.form("input_form"):
     if st.form_submit_button("Predict"):
         if input_img:
             image = Image.open(input_img)
-            new_image=trim(image)
-            #new_image=image.resize((64,64))
+            image=trim(image)
+            new_image=image.resize((64,64))
             img_array = np.array(new_image)
             loaded_model = load_model()
             prediction = predict(loaded_model,img_array)
