@@ -15,9 +15,10 @@ def predict(model,image):
             'yagh','yagw','yah','yahh','yaj','yak','yakw','yal',
             'yam','yan','yaq','yar','yarr','yas','yass','yat',
             'yatt','yaw','yax','yay','yaz','yazz','yey','yi','yu']
-    proba=round(np.max(yhat),2)*100
+    proba=np.max(yhat)*100
+    y = "{:.2f}".format(proba)
     result=labels[np.argmax(yhat)]
-    return result,proba
+    return result,y
 
 def trim(image):
     bg = Image.new(image.mode, image.size, image.getpixel((0, 0)))
