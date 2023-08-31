@@ -15,7 +15,7 @@ def predict(model,image):
             'yagh','yagw','yah','yahh','yaj','yak','yakw','yal',
             'yam','yan','yaq','yar','yarr','yas','yass','yat',
             'yatt','yaw','yax','yay','yaz','yazz','yey','yi','yu']
-    proba=np.max(yhat)
+    proba=round(np.max(yhat),0)*100
     result=labels[np.argmax(yhat)]
     return result,proba
 
@@ -41,4 +41,4 @@ with st.form("input_form",clear_on_submit=True):
             prediction = predict(loaded_model,img_array)[0]
             pred_proba= predict(loaded_model,img_array)[1]
             st.image(new_image)
-            st.write(f"<h3>The prediction is: {prediction} with probability of {pred_proba} </h3>", unsafe_allow_html=True)
+            st.write(f"<h3>The prediction is: {prediction} with probability of {pred_proba}% </h3>", unsafe_allow_html=True)
