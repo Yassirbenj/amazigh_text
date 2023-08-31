@@ -19,7 +19,7 @@ def predict(model,image):
     return result
 
 def trim(image):
-    bg = Image.new(image.mode, size=(64,64), image.getpixel((0, 0)))
+    bg = Image.new(image.mode, image.getpixel((0, 0)),size=(64,64))
     diff = ImageChops.difference(image, bg)
     diff = ImageChops.add(diff, diff, 2.0, -100)
     box = diff.getbbox()
