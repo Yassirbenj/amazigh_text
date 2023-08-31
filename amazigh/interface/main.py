@@ -1,6 +1,7 @@
 import streamlit as st
 import tensorflow as tf
 import numpy as np
+from PIL import Image
 
 
 def load_model():
@@ -23,6 +24,8 @@ with st.form("input_form"):
     input_img = st.file_uploader('character image',type=['png', 'jpg','jpeg'])
     if st.form_submit_button("Predict"):
         if input_img:
+            image = Image.open(input_img)
+            img_array = np.array(image)
             loaded_model = load_model()
-            prediction = predict(loaded_model,input_img)
+            prediction = predict(loaded_model,img_array)
             st.write(f"<h3>The prediction is: {prediction} </h3>", unsafe_allow_html=True)
