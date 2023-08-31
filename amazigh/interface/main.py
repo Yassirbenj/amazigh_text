@@ -38,4 +38,5 @@ with st.form("input_form"):
             img_array = np.array(new_image)
             loaded_model = load_model()
             prediction = predict(loaded_model,img_array)
+            st.image(new_image)
             st.write(f"<h3>The prediction is: {prediction} </h3>", unsafe_allow_html=True)
