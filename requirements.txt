@@ -5,3 +5,4 @@ opencv-python
 streamlit
 tensorflow
 numpy
+streamlit-drawable-canvas
