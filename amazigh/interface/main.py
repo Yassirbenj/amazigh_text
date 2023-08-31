@@ -1,12 +1,11 @@
 import streamlit as st
-import os
 from tensorflow import keras
 from keras import load_model
 import numpy as np
 
 
 def load_model():
-    model_path=os.path.join('/Users/yassir2/code/Yassirbenj/amazigh_text/models','amazighmodel3.h5')
+    model_path='/Users/yassir2/code/Yassirbenj/amazigh_text/models/amazighmodel3.h5'
     model=load_model(model_path)
     return model
 
