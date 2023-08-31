@@ -1,7 +1,7 @@
 import streamlit as st
 import tensorflow as tf
 import numpy as np
-from PIL import Image
+from PIL import Image,ImageChops
 
 
 def load_model():
@@ -18,6 +18,13 @@ def predict(model,image):
     result=labels[np.argmax(yhat)]
     return result
 
+def trim(image):
+    bg = Image.new(image.mode, image.size, image.getpixel((0, 0)))
+    diff = ImageChops.difference(image, bg)
+    diff = ImageChops.add(diff, diff, 2.0, -100)
+    box = diff.getbbox()
+    if box:
+        image.crop(box).save("trim_pil.png")
 
 with st.form("input_form"):
     st.write("<h3>Upload your image for the magic ✨</h3>", unsafe_allow_html=True)
@@ -25,6 +32,7 @@ with st.form("input_form"):
     if st.form_submit_button("Predict"):
         if input_img:
             image = Image.open(input_img)
+            image=trim(image)
             new_image=image.resize((64,64))
             img_array = np.array(new_image)
             loaded_model = load_model()
