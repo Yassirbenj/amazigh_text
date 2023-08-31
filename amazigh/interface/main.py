@@ -5,7 +5,7 @@ import numpy as np
 
 def load_model():
     #model_path='/Users/yassir2/code/Yassirbenj/amazigh_text/models/amazighmodel3.h5'
-    model=tf.keras.models.load_model("")
+    model=tf.keras.models.load_model("amazighmodel3.h5")
     return model
 
 def predict(model,image):
