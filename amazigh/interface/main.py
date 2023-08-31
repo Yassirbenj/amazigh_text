@@ -15,8 +15,9 @@ def predict(model,image):
             'yagh','yagw','yah','yahh','yaj','yak','yakw','yal',
             'yam','yan','yaq','yar','yarr','yas','yass','yat',
             'yatt','yaw','yax','yay','yaz','yazz','yey','yi','yu']
+    proba=np.max(yhat)
     result=labels[np.argmax(yhat)]
-    return result
+    return result,proba
 
 def trim(image):
     bg = Image.new(image.mode, image.size, image.getpixel((0, 0)))
@@ -37,6 +38,7 @@ with st.form("input_form"):
             new_image=image.resize((64,64))
             img_array = np.array(new_image)
             loaded_model = load_model()
-            prediction = predict(loaded_model,img_array)
+            prediction = predict(loaded_model,img_array)[0]
+            pred_proba= predict(loaded_model,img_array)[1]
             st.image(new_image)
-            st.write(f"<h3>The prediction is: {prediction} </h3>", unsafe_allow_html=True)
+            st.write(f"<h3>The prediction is: {prediction} with probability of {pred_proba} </h3>", unsafe_allow_html=True)
